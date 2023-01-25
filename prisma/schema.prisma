@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Product {
+  id    String  @id @default(uuid())
+  name  String
+  price Decimal
+
+  create_at DateTime @default(now())
+  Family    Family?  @relation(fields: [familyId], references: [id])
+  familyId  String?
+
+  @@index([familyId])
+  @@map("products")
+}
+
+model Service {
+  id    String  @id @default(uuid())
+  name  String
+  price Decimal
+
+  create_at DateTime @default(now())
+
+  @@map("services")
+}
+
+model Family {
+  id       String    @id @default(uuid())
+  name     String
+  products Product[]
+
+  create_at DateTime @default(now())
+
+  @@map("families")
+}
