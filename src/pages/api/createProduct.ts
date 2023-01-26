@@ -11,6 +11,23 @@ export default async function handler(
 
   const { name, price } = req.query
 
+  const existsProduct = await prisma.product.findUnique({
+    where: {
+      name: String(name),
+    },
+  })
+
+  if (existsProduct) {
+    const newPrice = await prisma.price.create({
+      data: {
+        price: Number(price),
+        product_id: existsProduct.id,
+      },
+    })
+
+    return res.status(201).json(newPrice)
+  }
+
   const product = await prisma.product.create({
     data: {
       name: String(name),

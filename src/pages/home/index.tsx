@@ -7,12 +7,11 @@ export default function Home() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    console.log(product, price)
-    const newProduct = api.post(
-      `/api/createProduct?name=${product}&price=${price}`,
-    )
-
-    console.log(newProduct)
+    api
+      .post(`/api/createProduct?name=${product}&price=${price}`)
+      .then((response) => {
+        return response.data
+      })
   }
 
   return (
