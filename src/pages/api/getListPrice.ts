@@ -13,9 +13,13 @@ export default async function handle(
     },
   })
 
+  if (!product) {
+    return res.status(404).json({ message: 'Product not found' })
+  }
+
   const listProducts = await prisma.price.findMany({
     where: {
-      product_id: product?.id,
+      product_id: product.id,
     },
     include: {
       product: {
@@ -23,6 +27,9 @@ export default async function handle(
           name: true,
         },
       },
+    },
+    orderBy: {
+      create_at: 'desc',
     },
   })
 
