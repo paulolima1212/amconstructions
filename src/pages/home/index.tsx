@@ -1,3 +1,4 @@
+import { api } from '@/lib/axios.config'
 import { FormEvent, useState } from 'react'
 
 export default function Home() {
@@ -7,6 +8,11 @@ export default function Home() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
     console.log(product, price)
+    const newProduct = api.post(
+      `/api/createProduct?name=${product}&price=${price}`,
+    )
+
+    console.log(newProduct)
   }
 
   return (
