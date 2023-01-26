@@ -29,7 +29,7 @@ export default function Home() {
 
   const listProducts = useQuery('listProducts', getProducts)
 
-  if (listProducts.status === 'success') {
+  if (listProducts.status === 'loading') {
     return <Skeleton />
   }
 
