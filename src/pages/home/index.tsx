@@ -1,5 +1,6 @@
 import { api } from '@/lib/axios.config'
 import { FormEvent, useState } from 'react'
+import { useQuery } from 'react-query'
 
 export default function Home() {
   const [product, setProduct] = useState('')
@@ -13,6 +14,17 @@ export default function Home() {
         return response.data
       })
   }
+
+  async function getProducts() {
+    const products = await api
+      .get('/api/getListProducts')
+      .then((res) => res.data)
+    return products
+  }
+
+  const listProducts = useQuery('listProducts', getProducts)
+
+  console.log(listProducts.data)
 
   return (
     <div>

@@ -1,6 +1,16 @@
 import { prisma } from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 
+interface ProductList {
+  id: string
+  price: number | any
+  create_at: Date
+  product_id: string
+  product: {
+    name: string
+  }
+}
+
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -17,7 +27,7 @@ export default async function handle(
     return res.status(404).json({ message: 'Product not found' })
   }
 
-  const listProducts = await prisma.price.findMany({
+  const listProducts: ProductList[] = await prisma.price.findMany({
     where: {
       product_id: product.id,
     },

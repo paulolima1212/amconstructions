@@ -7,5 +7,7 @@ export default async function handler(
 ) {
   const products = await prisma.product.findMany()
 
+  console.log(products)
+
   return res.json(products)
 }
