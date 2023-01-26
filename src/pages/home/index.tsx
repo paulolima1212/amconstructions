@@ -1,4 +1,6 @@
+import Skeleton from '@/components/skeleton'
 import { api } from '@/lib/axios.config'
+import { moneyFormatter } from '@/utils/formatter'
 import { FormEvent, useState } from 'react'
 import { useQuery } from 'react-query'
 
@@ -13,6 +15,9 @@ export default function Home() {
       .then((response) => {
         return response.data
       })
+
+    setProduct('')
+    setPrice(0)
   }
 
   async function getProducts() {
@@ -24,7 +29,9 @@ export default function Home() {
 
   const listProducts = useQuery('listProducts', getProducts)
 
-  console.log(listProducts.data)
+  if (listProducts.status === 'success') {
+    return <Skeleton />
+  }
 
   return (
     <div>
@@ -48,6 +55,18 @@ export default function Home() {
         </label>
         <button type="submit">Cadastrar</button>
       </form>
+      <div>
+        <ul>
+          {listProducts.data?.map((product: any) => {
+            return (
+              <li key={product.id}>
+                <span>{product.name}</span>
+                <span>{moneyFormatter.format(product.price)}</span>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }
