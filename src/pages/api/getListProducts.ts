@@ -7,45 +7,54 @@ export default async function handler(
 ) {
   const products = await prisma.$queryRaw`
     SELECT
-      products.name,
+      p.name,
+      p.measure,
+      (
+      SELECT 
+        f.name
+      FROM
+        families f 
+      WHERE 
+        f.id = p.family_id 
+      ) as family,
       (
       SELECT
         price.price
       FROM
         price
       WHERE
-        price.product_id = products.id
+        price.product_id = p.id
       ORDER BY
         price.created_at DESC
       LIMIT
-              1
-          ) as price,
-          (
-      SELECT
-        price.provider 
-      FROM
-        price
-      WHERE
-        price.product_id = products.id
-      ORDER BY
-        price.created_at DESC
-      LIMIT
-              1
-          ) as provider,
+                  1
+              ) as price,
       (
       SELECT
-        price.created_at 
+        price.provider
       FROM
         price
       WHERE
-        price.product_id = products.id
+        price.product_id = p.id
       ORDER BY
         price.created_at DESC
       LIMIT
-              1
-          ) as ultPreco
+                  1
+              ) as provider,
+      (
+      SELECT
+        price.created_at
+      FROM
+        price
+      WHERE
+        price.product_id = p.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+          1
+      ) as ultPreco
     FROM
-      products
+      products p
   `
 
   return res.json(products)

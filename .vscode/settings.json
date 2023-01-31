@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["Cadastrar", "Digite", "fornecedor", "preço", "produto"],
+  "cSpell.words": [
+    "Cadastrar",
+    "Descrição",
+    "Digite",
+    "fornecedor",
+    "preço",
+    "produto"
+  ],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,

@@ -1,12 +1,14 @@
 import Skeleton from '@/components/skeleton'
 import { api } from '@/lib/axios.config'
-import { moneyFormatter } from '@/utils/formatter'
+import { dateFormatted, moneyFormatter } from '@/utils/formatter'
 import { FormEvent, useState } from 'react'
 import { useQuery } from 'react-query'
+import { ProductsContainer, TableContainer } from './styles'
 
 export default function Home() {
   const [product, setProduct] = useState('')
   const [provider, setProvider] = useState('')
+  const [family, setFamily] = useState('')
   const [price, setPrice] = useState(0)
 
   async function handleSubmit(event: FormEvent) {
@@ -16,10 +18,11 @@ export default function Home() {
     event.preventDefault()
     api
       .post(`/api/createProduct`, {
-        product,
+        name: product,
         provider,
         price,
         measure,
+        family,
       })
       .then((response) => {
         return response.data
@@ -44,7 +47,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <ProductsContainer>
       <h1>Price control</h1>
       <form onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="product">
@@ -74,6 +77,15 @@ export default function Home() {
             value={provider}
           />
         </label>
+        <label htmlFor="family">
+          <input
+            type="text"
+            id="family"
+            placeholder="Digite o nome do fornecedor"
+            onChange={(e) => setFamily(e.target.value)}
+            value={family}
+          />
+        </label>
         <select aria-label="measure-unit" name="measure" id="measure">
           <option value="UN">UN</option>
           <option value="KG">KG</option>
@@ -82,20 +94,34 @@ export default function Home() {
         </select>
         <button type="submit">Cadastrar</button>
       </form>
-      <div>
-        <ul>
-          {listProducts.data?.map((product: any) => {
-            return (
-              <li key={product.id}>
-                <span>{product.name}</span>
-                <span>{moneyFormatter.format(product.price)}</span>
-                <span>{product.provider}</span>
-                <span>{product.ultPreco}</span>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </div>
+      <TableContainer>
+        <table>
+          <thead>
+            <tr>
+              <th>Familia</th>
+              <th>Descrição</th>
+              <th>Fornecedor</th>
+              <th>Preço</th>
+              <th>Un.</th>
+              <th>Ult Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listProducts.data?.map((product: any) => {
+              return (
+                <tr key={product.id}>
+                  <td>{product.family}</td>
+                  <td>{product.name}</td>
+                  <td>{moneyFormatter.format(product.price)}</td>
+                  <td>{product.provider}</td>
+                  <td>{product.measure}</td>
+                  <td>{dateFormatted(new Date(product.ultPreco))}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </TableContainer>
+    </ProductsContainer>
   )
 }

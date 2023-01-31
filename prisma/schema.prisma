@@ -52,7 +52,7 @@ model Service {
 
 model Family {
   id       String    @id @default(uuid())
-  name     String
+  name     String    @unique
   products Product[]
 
   created_at DateTime @default(now())
