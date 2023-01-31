@@ -1,21 +1,30 @@
 import { api } from '@/lib/axios.config'
-import { FormEvent, useState } from 'react'
-import { FormContainer } from './styles'
+import { Button, Form, FormContainer } from './styles'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const formNewProductData = z.object({
+  name: z.string().min(3),
+  provider: z.string().min(4),
+  family: z.string().min(4),
+  price: z.coerce.number(),
+  measure: z.string(),
+})
+
+type FormNewProductDataSchema = z.infer<typeof formNewProductData>
 
 export function FormNewProduct() {
-  const [product, setProduct] = useState('')
-  const [provider, setProvider] = useState('')
-  const [family, setFamily] = useState('')
-  const [price, setPrice] = useState(0)
+  const { handleSubmit, register } = useForm<FormNewProductDataSchema>({
+    resolver: zodResolver(formNewProductData),
+  })
 
-  async function handleSubmit(event: FormEvent) {
-    const measureValue = document.getElementById('measure') as HTMLSelectElement
-    const measure = measureValue.value
+  async function handleCreateNewProduct(data: FormNewProductDataSchema) {
+    const { name, provider, price, measure, family } = data
 
-    event.preventDefault()
     api
       .post(`/api/createProduct`, {
-        name: product,
+        name,
         provider,
         price,
         measure,
@@ -24,58 +33,54 @@ export function FormNewProduct() {
       .then((response) => {
         return response.data
       })
-
-    setProduct('')
-    setProvider('')
-    setPrice(0)
   }
+
   return (
     <FormContainer>
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <Form onSubmit={handleSubmit(handleCreateNewProduct)}>
         <label htmlFor="product">
+          Produto
           <input
             type="text"
-            id="product"
             placeholder="Digite o nome do produto"
-            onChange={(e) => setProduct(e.target.value)}
-            value={product}
+            {...register('name')}
           />
         </label>
         <label htmlFor="price">
+          Preço
           <input
-            type="text"
-            id="price"
+            type="number"
             placeholder="Digite o preço do produto"
-            onChange={(e) => setPrice(Number(e.target.value))}
-            value={price}
+            {...register('price')}
           />
         </label>
         <label htmlFor="provider">
+          Fornecedor
           <input
             type="text"
-            id="provider"
             placeholder="Digite o nome do fornecedor"
-            onChange={(e) => setProvider(e.target.value)}
-            value={provider}
+            {...register('provider')}
           />
         </label>
         <label htmlFor="family">
+          Categoria
           <input
             type="text"
-            id="family"
             placeholder="Digite o nome do fornecedor"
-            onChange={(e) => setFamily(e.target.value)}
-            value={family}
+            {...register('family')}
           />
         </label>
-        <select aria-label="measure-unit" name="measure" id="measure">
-          <option value="UN">UN</option>
-          <option value="KG">KG</option>
-          <option value="M2">M²</option>
-          <option value="M">M</option>
-        </select>
-        <button type="submit">Cadastrar</button>
-      </form>
+        <label>
+          Un.
+          <select aria-label="measure-unit" {...register('measure')}>
+            <option value="UN">UN</option>
+            <option value="KG">KG</option>
+            <option value="M2">M²</option>
+            <option value="M">M</option>
+          </select>
+        </label>
+        <Button type="submit">Cadastrar</Button>
+      </Form>
     </FormContainer>
   )
 }

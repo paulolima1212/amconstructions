@@ -3,6 +3,7 @@ import { api } from '@/lib/axios.config'
 import { dateFormatted, moneyFormatter } from '@/utils/formatter'
 import { useQuery } from 'react-query'
 import { ProductsContainer, TableContainer } from './styles'
+import { FormNewProduct } from './formNewProduct'
 
 export default function Home() {
   async function getProducts() {
@@ -50,6 +51,7 @@ export default function Home() {
           </tbody>
         </table>
       </TableContainer>
+      <FormNewProduct />
     </ProductsContainer>
   )
 }
