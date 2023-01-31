@@ -1,18 +1,11 @@
 import Skeleton from '@/components/skeleton'
-import { api } from '@/lib/axios.config'
 import { dateFormatted, moneyFormatter } from '@/utils/formatter'
 import { useQuery } from 'react-query'
 import { ProductsContainer, TableContainer } from './styles'
 import { FormNewProduct } from './formNewProduct'
+import { getProducts } from '@/services/http/getListProducts'
 
 export default function Home() {
-  async function getProducts() {
-    const products = await api
-      .get('/api/getListProducts')
-      .then((res) => res.data)
-    return products
-  }
-
   const listProducts = useQuery('listProducts', getProducts)
 
   if (listProducts.status === 'loading') {
