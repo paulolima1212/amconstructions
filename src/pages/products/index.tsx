@@ -6,17 +6,27 @@ import { useQuery } from 'react-query'
 
 export default function Home() {
   const [product, setProduct] = useState('')
+  const [provider, setProvider] = useState('')
   const [price, setPrice] = useState(0)
 
   async function handleSubmit(event: FormEvent) {
+    const measureValue = document.getElementById('measure') as HTMLSelectElement
+    const measure = measureValue.value
+
     event.preventDefault()
     api
-      .post(`/api/createProduct?name=${product}&price=${price}`)
+      .post(`/api/createProduct`, {
+        product,
+        provider,
+        price,
+        measure,
+      })
       .then((response) => {
         return response.data
       })
 
     setProduct('')
+    setProvider('')
     setPrice(0)
   }
 
@@ -43,6 +53,7 @@ export default function Home() {
             id="product"
             placeholder="Digite o nome do produto"
             onChange={(e) => setProduct(e.target.value)}
+            value={product}
           />
         </label>
         <label htmlFor="price">
@@ -51,8 +62,24 @@ export default function Home() {
             id="price"
             placeholder="Digite o preço do produto"
             onChange={(e) => setPrice(Number(e.target.value))}
+            value={price}
           />
         </label>
+        <label htmlFor="provider">
+          <input
+            type="text"
+            id="provider"
+            placeholder="Digite o nome do fornecedor"
+            onChange={(e) => setProvider(e.target.value)}
+            value={provider}
+          />
+        </label>
+        <select aria-label="measure-unit" name="measure" id="measure">
+          <option value="UN">UN</option>
+          <option value="KG">KG</option>
+          <option value="M2">M2</option>
+          <option value="M">M</option>
+        </select>
         <button type="submit">Cadastrar</button>
       </form>
       <div>
@@ -62,6 +89,8 @@ export default function Home() {
               <li key={product.id}>
                 <span>{product.name}</span>
                 <span>{moneyFormatter.format(product.price)}</span>
+                <span>{product.provider}</span>
+                <span>{product.ultPreco}</span>
               </li>
             )
           })}

@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 interface ProductList {
   id: string
   price: number | any
-  create_at: Date
+  created_at: Date
   product_id: string
   product: {
     name: string
@@ -39,7 +39,7 @@ export default async function handle(
       },
     },
     orderBy: {
-      create_at: 'desc',
+      created_at: 'desc',
     },
   })
 

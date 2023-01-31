@@ -6,20 +6,44 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const products = await prisma.$queryRaw`
-    SELECT 
+    SELECT
       products.name,
       (
-        SELECT 
-          price.price
-        FROM
-          price
-        WHERE
-          price.product_id = products.id
-        ORDER BY
-          price.create_at DESC
-        LIMIT
-          1
-      ) as price
+      SELECT
+        price.price
+      FROM
+        price
+      WHERE
+        price.product_id = products.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+              1
+          ) as price,
+          (
+      SELECT
+        price.provider 
+      FROM
+        price
+      WHERE
+        price.product_id = products.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+              1
+          ) as provider,
+      (
+      SELECT
+        price.created_at 
+      FROM
+        price
+      WHERE
+        price.product_id = products.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+              1
+          ) as ultPreco
     FROM
       products
   `

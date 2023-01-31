@@ -9,7 +9,9 @@ export default async function handler(
     return res.status(405).end()
   }
 
-  const { name, price } = req.query
+  const { name, price, provider, measure } = req.body
+
+  console.log(provider)
 
   const existsProduct = await prisma.product.findUnique({
     where: {
@@ -22,6 +24,8 @@ export default async function handler(
       data: {
         price: Number(price),
         product_id: existsProduct.id,
+        provider: String(provider),
+        measure,
       },
     })
 
@@ -32,6 +36,8 @@ export default async function handler(
     data: {
       name: String(name),
       price: Number(price),
+      provider: String(provider),
+      measure,
     },
   })
 
@@ -39,6 +45,8 @@ export default async function handler(
     data: {
       price: Number(price),
       product_id: product.id,
+      provider: String(provider),
+      measure,
     },
   })
 
