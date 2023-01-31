@@ -15,7 +15,7 @@ const formNewProductData = z.object({
 type FormNewProductDataSchema = z.infer<typeof formNewProductData>
 
 export function FormNewProduct() {
-  const { handleSubmit, register } = useForm<FormNewProductDataSchema>({
+  const { handleSubmit, register, reset } = useForm<FormNewProductDataSchema>({
     resolver: zodResolver(formNewProductData),
   })
 
@@ -33,6 +33,8 @@ export function FormNewProduct() {
       .then((response) => {
         return response.data
       })
+
+    reset()
   }
 
   return (
