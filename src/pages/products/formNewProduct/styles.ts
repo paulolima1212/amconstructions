@@ -17,6 +17,8 @@ export const Form = styled('form', {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '1rem',
   },
 })
 
@@ -27,4 +29,21 @@ export const Button = styled('button', {
   alignItems: 'center',
   borderRadius: '6px',
   border: 'none',
+})
+
+export const Input = styled('input', {
+  background: '$gray700',
+  border: 'solid 1px $gray500',
+  padding: '0.5rem 1rem',
+  borderRadius: '8px',
+  color: '$gray100',
+  fontSize: '1rem',
+})
+
+export const Select = styled('select', {
+  background: '$gray700',
+  border: 'solid 1px $gray500',
+  padding: '0.5rem 1rem',
+  borderRadius: '8px',
+  color: '$gray100',
 })

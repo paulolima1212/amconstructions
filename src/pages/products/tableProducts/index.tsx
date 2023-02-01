@@ -19,12 +19,14 @@ export function TableProduct({ products }: any) {
           {products.data?.map((product: any) => {
             return (
               <tr key={product.id}>
-                <td>{product.family}</td>
+                <td width={'15%'}>{product.family}</td>
                 <td>{product.name}</td>
                 <td>{product.provider}</td>
                 <td>{moneyFormatter.format(product.price)}</td>
                 <td>{product.measure}</td>
-                <td>{dateFormatted(new Date(product.ultPreco))}</td>
+                <td width={'50%'}>
+                  {dateFormatted(new Date(product.ultPreco))}
+                </td>
               </tr>
             )
           })}

@@ -1,5 +1,5 @@
 import { api } from '@/lib/axios.config'
-import { Button, Form, FormContainer } from './styles'
+import { Button, Form, FormContainer, Input, Select } from './styles'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -42,7 +42,7 @@ export function FormNewProduct() {
       <Form onSubmit={handleSubmit(handleCreateNewProduct)}>
         <label htmlFor="product">
           Produto
-          <input
+          <Input
             type="text"
             placeholder="Digite o nome do produto"
             {...register('name')}
@@ -50,7 +50,7 @@ export function FormNewProduct() {
         </label>
         <label htmlFor="price">
           Preço
-          <input
+          <Input
             type="number"
             placeholder="Digite o preço do produto"
             min={0.01}
@@ -60,7 +60,7 @@ export function FormNewProduct() {
         </label>
         <label htmlFor="provider">
           Fornecedor
-          <input
+          <Input
             type="text"
             placeholder="Digite o nome do fornecedor"
             {...register('provider')}
@@ -68,7 +68,7 @@ export function FormNewProduct() {
         </label>
         <label htmlFor="family">
           Categoria
-          <input
+          <Input
             type="text"
             placeholder="Digite o nome do fornecedor"
             {...register('family')}
@@ -76,12 +76,12 @@ export function FormNewProduct() {
         </label>
         <label>
           Un.
-          <select aria-label="measure-unit" {...register('measure')}>
+          <Select aria-label="measure-unit" {...register('measure')}>
             <option value="UN">UN</option>
             <option value="KG">KG</option>
             <option value="M2">M²</option>
             <option value="M">M</option>
-          </select>
+          </Select>
         </label>
         <Button type="submit">Cadastrar</Button>
       </Form>
