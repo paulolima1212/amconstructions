@@ -1,13 +1,12 @@
 import Skeleton from '@/components/skeleton'
 import { useQuery } from 'react-query'
 import { ProductsContainer } from './styles'
-import { FormNewProduct } from './formNewProduct'
 import { getProducts } from '@/services/http/getListProducts'
 import { TableProduct } from './tableProducts'
 
 export default function Home() {
   const listProducts = useQuery('listProducts', getProducts, {
-    refetchInterval: 100
+    refetchInterval: 100,
   })
 
   if (listProducts.status === 'loading') {
@@ -18,7 +17,6 @@ export default function Home() {
     <ProductsContainer>
       <h1>Price control</h1>
       <TableProduct products={listProducts} />
-      <FormNewProduct />
     </ProductsContainer>
   )
 }
