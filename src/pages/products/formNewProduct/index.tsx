@@ -53,6 +53,8 @@ export function FormNewProduct() {
           <input
             type="number"
             placeholder="Digite o preço do produto"
+            min={0.01}
+            step={0.01}
             {...register('price')}
           />
         </label>

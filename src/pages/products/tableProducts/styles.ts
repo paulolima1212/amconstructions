@@ -25,6 +25,10 @@ export const TableContainer = styled('div', {
         td: {
           padding: '1rem',
         },
+
+        '&:nth-child(even)': {
+          background: '$gray900',
+        },
       },
     },
   },

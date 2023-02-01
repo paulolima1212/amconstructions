@@ -6,6 +6,7 @@ export const ProductsContainer = styled('div', {
   background: '$gray800',
   width: '100%',
   height: '100%',
+  minHeight: '100vh',
   color: '$gray100',
   alignItems: 'center',
   padding: '1rem 2rem',

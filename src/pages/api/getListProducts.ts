@@ -27,8 +27,8 @@ export default async function handler(
       ORDER BY
         price.created_at DESC
       LIMIT
-                  1
-              ) as price,
+        1
+      ) as price,
       (
       SELECT
         price.provider
@@ -39,8 +39,8 @@ export default async function handler(
       ORDER BY
         price.created_at DESC
       LIMIT
-                  1
-              ) as provider,
+        1
+      ) as provider,
       (
       SELECT
         price.created_at
@@ -51,7 +51,7 @@ export default async function handler(
       ORDER BY
         price.created_at DESC
       LIMIT
-          1
+        1
       ) as ultPreco
     FROM
       products p

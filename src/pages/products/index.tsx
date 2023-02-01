@@ -6,7 +6,9 @@ import { getProducts } from '@/services/http/getListProducts'
 import { TableProduct } from './tableProducts'
 
 export default function Home() {
-  const listProducts = useQuery('listProducts', getProducts)
+  const listProducts = useQuery('listProducts', getProducts, {
+    refetchInterval: 100
+  })
 
   if (listProducts.status === 'loading') {
     return <Skeleton />
