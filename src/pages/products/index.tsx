@@ -2,8 +2,8 @@ import Skeleton from '@/components/skeleton'
 import { useQuery } from 'react-query'
 import { ButtonsContainer, ProductsContainer } from './styles'
 import getProducts from '@/services/http/getListProducts'
-import { TableProduct } from './components/tableProducts'
-import { Header } from './components/header'
+import TableProduct from './components/tableProducts'
+import Header from './components/header'
 import Button from '@/components/button'
 
 export default function Products() {
