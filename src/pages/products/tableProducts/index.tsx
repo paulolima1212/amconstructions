@@ -1,4 +1,4 @@
-import { dateFormatted, moneyFormatter } from '@/utils/formatter'
+import dateFormatted, { moneyFormatter } from '@/utils/formatter'
 import { TableContainer } from './styles'
 
 export default function TableProduct({ products }: any) {
