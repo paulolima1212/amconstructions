@@ -1,7 +1,7 @@
 import dateFormatted, { moneyFormatter } from '@/utils/formatter'
 import { TableContainer } from './styles'
 
-export default function TableProduct({ products }: any) {
+export function TableProduct({ products }: any) {
   return (
     <TableContainer>
       <table>
