@@ -1,4 +1,4 @@
-import background from '../../../public/background.jpg'
+import background from '../../assets/background.jpg'
 
 import { styled } from '@/styles'
 
