@@ -12,7 +12,7 @@ export default function Home() {
       </HeaderContainer>
       <ButtonsContainer>
         <Button href={'/products'} title="Consulta de preços" />
-        <Button href={'/newProduct'} title="Nova entrada" />
+        <Button href={'/newproduct'} title="Nova entrada" />
         <Button href={'/'} title="Nova cotação" />
       </ButtonsContainer>
     </MainContainer>

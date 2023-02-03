@@ -5,6 +5,8 @@ export const TableContainer = styled('div', {
   flexDirection: 'column',
   marginTop: '3rem',
   color: '$gray900',
+  width: '100%',
+  padding: '1rem 2rem',
 
   table: {
     borderCollapse: 'collapse',
@@ -24,6 +26,8 @@ export const TableContainer = styled('div', {
     tbody: {
       tr: {
         border: 'solid 1px $gray900',
+        textAlign: 'center',
+
         td: {
           padding: '1rem',
         },

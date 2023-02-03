@@ -20,5 +20,6 @@ export const ButtonsContainer = styled('div', {
   display: 'flex',
   color: '$gray900',
   marginTop: '6rem',
+  marginBottom: '3rem',
   gap: '3.4rem',
 })
