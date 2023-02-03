@@ -11,9 +11,9 @@ export default function Home() {
         <Image src={logo} width={278} height={151} alt={''} />
       </HeaderContainer>
       <ButtonsContainer>
-        <Button title="Consulta de preços" />
-        <Button title="Nova entrada" />
-        <Button title="Nova cotação" />
+        <Button href={'/products'} title="Consulta de preços" />
+        <Button href={'/newProduct'} title="Nova entrada" />
+        <Button href={'/'} title="Nova cotação" />
       </ButtonsContainer>
     </MainContainer>
   )
