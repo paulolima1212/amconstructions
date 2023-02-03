@@ -2,7 +2,7 @@ import Image from 'next/image'
 import logo from '../../../public/logo.png'
 
 import { ButtonsContainer, HeaderContainer, MainContainer } from './styles'
-import { Button } from '@/components/button'
+import Button from '@/components/button'
 
 export default function Home() {
   return (

@@ -5,6 +5,6 @@ type ButtonProps = ComponentProps<typeof ButtonContainer> & {
   title: string
 }
 
-export function Button({ title, ...rest }: ButtonProps) {
+export default function Button({ title, ...rest }: ButtonProps) {
   return <ButtonContainer {...rest}>{title}</ButtonContainer>
 }

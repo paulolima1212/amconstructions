@@ -2,9 +2,9 @@ import Skeleton from '@/components/skeleton'
 import { useQuery } from 'react-query'
 import { ProductsContainer } from './styles'
 import { getProducts } from '@/services/http/getListProducts'
-import { TableProduct } from './tableProducts'
+import TableProduct from './tableProducts'
 
-export default function Home() {
+export default function Products() {
   const listProducts = useQuery('listProducts', getProducts, {
     refetchInterval: 100,
   })
