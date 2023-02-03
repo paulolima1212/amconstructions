@@ -1,8 +1,10 @@
 import Skeleton from '@/components/skeleton'
 import { useQuery } from 'react-query'
-import { ProductsContainer } from './styles'
+import { ButtonsContainer, ProductsContainer } from './styles'
 import getProducts from '@/services/http/getListProducts'
 import { TableProduct } from './components/tableProducts'
+import { Header } from './components/header'
+import Button from '@/components/button'
 
 export default function Products() {
   const listProducts = useQuery('listProducts', getProducts, {
@@ -15,8 +17,12 @@ export default function Products() {
 
   return (
     <ProductsContainer>
-      <h1>Price control</h1>
+      <Header />
       <TableProduct products={listProducts} />
+      <ButtonsContainer>
+        <Button size={'md'} href={'/'} title="Nova entrada" />
+        <Button size={'md'} href={'/'} title="Nova cotação" />
+      </ButtonsContainer>
     </ProductsContainer>
   )
 }

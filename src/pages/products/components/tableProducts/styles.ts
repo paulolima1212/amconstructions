@@ -4,6 +4,7 @@ export const TableContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   marginTop: '3rem',
+  color: '$gray900',
 
   table: {
     borderCollapse: 'collapse',
@@ -12,7 +13,8 @@ export const TableContainer = styled('div', {
 
     thead: {
       tr: {
-        border: 'solid 1px $gray100',
+        border: 'solid 1px $gray900',
+        background: '$gray300',
         th: {
           padding: '1rem',
         },
@@ -21,13 +23,17 @@ export const TableContainer = styled('div', {
 
     tbody: {
       tr: {
-        border: 'solid 1px $gray100',
+        border: 'solid 1px $gray900',
         td: {
           padding: '1rem',
         },
 
         '&:nth-child(even)': {
-          background: '$gray900',
+          background: '$gray100',
+        },
+
+        '&:nth-child(odd)': {
+          background: '$baseButton',
         },
       },
     },
