@@ -13,6 +13,10 @@ export const TableContainer = styled('div', {
     borderSpacing: '0 0.5rem',
     marginTop: '1.5rem',
 
+    '@bp4': {
+      fontSize: '1.5rem',
+    },
+
     thead: {
       tr: {
         border: 'solid 1px $gray900',

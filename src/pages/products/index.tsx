@@ -20,7 +20,7 @@ export default function Products() {
       <Header />
       <TableProduct products={listProducts} />
       <ButtonsContainer>
-        <Button size={'md'} href={'/'} title="Nova entrada" />
+        <Button size={'md'} href={'/newproduct'} title="Nova entrada" />
         <Button size={'md'} href={'/'} title="Nova cotação" />
       </ButtonsContainer>
     </ProductsContainer>

@@ -24,7 +24,7 @@ export function TableProduct({ products }: any) {
                 <td>{product.provider}</td>
                 <td>{moneyFormatter.format(product.price)}</td>
                 <td>{product.measure}</td>
-                <td width={'50%'}>
+                <td width={'30%'}>
                   {dateFormatted(new Date(product.ultPreco))}
                 </td>
               </tr>

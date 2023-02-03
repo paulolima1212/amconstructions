@@ -41,5 +41,6 @@ export const {
     bp1: '(max-width: 500px)',
     bp2: '(max-width: 768px)',
     bp3: '(max-width: 1024px)',
+    bp4: '(min-width: 1024px)',
   },
 })
