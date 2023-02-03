@@ -24,6 +24,8 @@ export const {
 
       green500: '#00875f',
       green300: '#00b37e',
+
+      baseButton: '#D9D9D9',
     } as const,
     fontSizes: {
       'title-m': '2rem',
