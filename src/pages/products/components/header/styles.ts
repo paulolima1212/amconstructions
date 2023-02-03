@@ -10,7 +10,7 @@ export const HeaderContainer = styled('div', {
   alignItems: 'center',
 
   h2: {
-    fontSize: '2.7rem',
+    fontSize: '2.6rem',
     textTransform: 'uppercase',
     fontWeight: 'normal',
     color: '$gray900',
