@@ -11,7 +11,8 @@
     "newproduct",
     "preço",
     "preços",
-    "produto"
+    "produto",
+    "Testes"
   ],
   "files.exclude": {
     "**/.git": true,
