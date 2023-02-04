@@ -1,12 +1,8 @@
-import Skeleton from '@/components/skeleton'
-import { useQuery } from 'react-query'
 import { ButtonsContainer, ProductsContainer } from './styles'
-import getProducts from '@/services/http/getListProducts'
 import TableProduct from './components/tableProducts'
 import Header from './components/header'
 import Button from '@/components/button'
 import { GetServerSideProps } from 'next'
-import { api } from '@/lib/axios.config'
 import { getProductsList } from '@/services/getProducts.service'
 
 export default function Products({ products }: any) {
