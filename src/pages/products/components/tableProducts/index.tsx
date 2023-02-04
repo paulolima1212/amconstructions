@@ -16,7 +16,7 @@ export default function TableProduct({ products }: any) {
           </tr>
         </thead>
         <tbody>
-          {products.data?.map((product: any) => {
+          {products.map((product: any) => {
             return (
               <tr key={product.id}>
                 <td width={'15%'}>{product.family}</td>
