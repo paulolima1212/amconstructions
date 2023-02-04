@@ -1,3 +1,4 @@
+'use client'
 import { api } from '@/lib/axios.config'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
