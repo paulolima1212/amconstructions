@@ -3,8 +3,8 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowLeft } from 'phosphor-react'
-import Link from 'next/link'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
+import Link from 'next/link'
 
 const formNewProductData = z.object({
   name: z.string().min(3),

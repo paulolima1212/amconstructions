@@ -8,7 +8,6 @@ export const FormContainer = styled('div', {
   flexDirection: 'column',
   background: '$gray700',
   padding: '2.5rem',
-  borderRadius: '8px',
   alignItems: 'center',
 })
 

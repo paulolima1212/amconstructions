@@ -1,9 +1,9 @@
+import { GetServerSideProps } from 'next'
 import { ButtonsContainer, ProductsContainer } from './styles'
+import { getProductsList } from '@/services/getProducts.service'
 import TableProduct from './components/tableProducts'
 import Header from './components/header'
 import Button from '@/components/button'
-import { GetServerSideProps } from 'next'
-import { getProductsList } from '@/services/getProducts.service'
 
 export default function Products({ products }: any) {
   const listProducts = JSON.parse(products)
