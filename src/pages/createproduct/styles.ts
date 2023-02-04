@@ -14,6 +14,7 @@ export const FormContainer = styled('div', {
 export const Form = styled('form', {
   display: 'flex',
   width: '100%',
+  maxWidth: '400px',
   flexDirection: 'column',
   gap: '1rem',
   alignItems: 'center',
