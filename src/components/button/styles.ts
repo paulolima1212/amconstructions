@@ -9,6 +9,7 @@ export const ButtonContainer = styled(Link, {
   justifyContent: 'center',
   alignItems: 'center',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+  cursor: 'pointer',
 
   '&:hover': {
     background: '$gray500',

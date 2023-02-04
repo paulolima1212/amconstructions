@@ -12,6 +12,10 @@ export const globalStyles = globalCss({
     fontSize: '62.5%',
   },
 
+  button: {
+    cursor: 'pointer',
+  },
+
   '&::-webkit-scrollbar': {
     display: 'none',
   },

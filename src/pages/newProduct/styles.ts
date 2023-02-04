@@ -88,6 +88,10 @@ export const Select = styled('select', {
   padding: '0.5rem 1rem',
   borderRadius: '8px',
   color: '$gray100',
+
+  option: {
+    cursor: 'pointer',
+  },
 })
 
 export const Title = styled('h2', {

@@ -32,8 +32,8 @@ export const Form = styled('form', {
     },
   },
 
-  '@bp1': {
-    fontSize: '1.5rem',
+  '@bp4': {
+    fontSize: '2rem',
   },
 })
 
@@ -73,11 +73,11 @@ export const Input = styled('input', {
     fontSize: '0.7rem',
   },
 
-  '@bp1': {
+  '@bp4': {
     fontSize: '2rem',
 
     '&::placeholder': {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
     },
   },
 })
@@ -88,6 +88,11 @@ export const Select = styled('select', {
   padding: '0.5rem 1rem',
   borderRadius: '8px',
   color: '$gray100',
+  cursor: 'pointer',
+
+  option: {
+    cursor: 'pointer',
+  },
 })
 
 export const Title = styled('h2', {
@@ -99,6 +104,10 @@ export const Title = styled('h2', {
   gap: '0.5rem',
   alignItems: 'center',
   position: 'relative',
+
+  svg: {
+    cursor: 'pointer',
+  },
 
   a: {
     all: 'unset',
