@@ -1,10 +1,9 @@
-import { api } from '@/lib/axios.config'
 import { ArrowLeft } from 'phosphor-react'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
 
 export default function FormNewProduct() {
-  async function handleCreateNewProduct(data: any) {
+  async function handleCreateNewProduct() {
     // const { name, provider, price, measure, family } = data
     // api
     //   .post(`/api/createProduct`, {
