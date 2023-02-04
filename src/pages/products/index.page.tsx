@@ -13,7 +13,7 @@ export default function Products({ products }: any) {
       <Header />
       <TableProduct products={listProducts} />
       <ButtonsContainer>
-        <Button size={'md'} href={'/newproduct'} title="Nova entrada" />
+        <Button size={'md'} href={'/createproduct'} title="Nova entrada" />
         <Button size={'md'} href={'/'} title="Nova cotação" />
       </ButtonsContainer>
     </ProductsContainer>

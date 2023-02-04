@@ -1,16 +1,18 @@
 import { api } from '@/lib/axios.config'
-import { useForm } from 'react-hook-form'
 import { ArrowLeft } from 'phosphor-react'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 
 export default function FormNewProduct() {
-  const { handleSubmit, register, reset } = useForm()
+  const [name, setName] = useState('')
+  const [provider, setProvider] = useState('')
+  const [price, setPrice] = useState('')
+  const [measure, setMeasure] = useState('')
+  const [family, setFamily] = useState('')
 
-  async function handleCreateNewProduct(data: any) {
-    const { name, provider, price, measure, family } = data
-
+  async function handleCreateNewProduct(e: FormEvent) {
+    e.preventDefault()
     api
       .post(`/api/createProduct`, {
         name,
@@ -22,8 +24,12 @@ export default function FormNewProduct() {
       .then((response) => {
         return response.data
       })
-
-    reset()
+    setName('')
+    setFamily('')
+    setMeasure('')
+    setPrice('')
+    setPrice('')
+    setProvider('')
   }
 
   return (
@@ -34,13 +40,14 @@ export default function FormNewProduct() {
         </Link>
         Nova Entrada
       </Title>
-      <Form onSubmit={handleSubmit(handleCreateNewProduct)}>
+      <Form onSubmit={handleCreateNewProduct}>
         <label htmlFor="product">
           <span>Produto</span>
           <Input
             type="text"
             placeholder="Digite o nome do produto"
-            {...register('name')}
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
         </label>
         <label htmlFor="price">
@@ -48,9 +55,10 @@ export default function FormNewProduct() {
           <Input
             type="number"
             placeholder="Digite o preço do produto"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
             min={0.01}
             step={0.01}
-            {...register('price')}
           />
         </label>
         <label htmlFor="provider">
@@ -58,20 +66,27 @@ export default function FormNewProduct() {
           <Input
             type="text"
             placeholder="Digite o nome do fornecedor"
-            {...register('provider')}
+            onChange={(e) => setProvider(e.target.value)}
+            value={provider}
           />
         </label>
         <label htmlFor="family">
           <span>Categoria</span>
           <Input
             type="text"
-            placeholder="Digite o nome do fornecedor"
-            {...register('family')}
+            placeholder="Digite o nome da categoria"
+            onChange={(e) => setFamily(e.target.value)}
+            value={family}
           />
         </label>
         <label>
           <span>Un.</span>
-          <Select aria-label="measure-unit" {...register('measure')}>
+          <Select
+            aria-label="measure-unit"
+            onChange={(e) => setMeasure(e.target.value)}
+            value={measure}
+          >
+            <option value="SELECT"> </option>
             <option value="UN">UN</option>
             <option value="KG">KG</option>
             <option value="M2">M²</option>
