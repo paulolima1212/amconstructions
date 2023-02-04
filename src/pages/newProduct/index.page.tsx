@@ -6,17 +6,17 @@ import { ArrowLeft } from 'phosphor-react'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
 
-const formNewProductData = z.object({
-  name: z.string().min(3),
-  provider: z.string().min(4),
-  family: z.string().min(4),
-  price: z.coerce.number(),
-  measure: z.string(),
-})
-
-type FormNewProductDataSchema = z.infer<typeof formNewProductData>
-
 export default function FormNewProduct() {
+  const formNewProductData = z.object({
+    name: z.string().min(3),
+    provider: z.string().min(4),
+    family: z.string().min(4),
+    price: z.coerce.number(),
+    measure: z.string(),
+  })
+
+  type FormNewProductDataSchema = z.infer<typeof formNewProductData>
+
   const { handleSubmit, register, reset } = useForm<FormNewProductDataSchema>({
     resolver: zodResolver(formNewProductData),
   })
