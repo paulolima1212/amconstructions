@@ -3,7 +3,7 @@ import { styled } from '@/styles'
 export const TableContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '3rem',
+  marginTop: '1rem',
   color: '$gray900',
   width: '100%',
   padding: '1rem 2rem',

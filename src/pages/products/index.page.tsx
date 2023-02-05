@@ -1,9 +1,11 @@
 import { GetServerSideProps } from 'next'
-import { ButtonsContainer, ProductsContainer } from './styles'
+import { ProductsContainer } from './styles'
 import { getProductsList } from '@/services/getProducts.service'
 import TableProduct from './components/tableProducts'
 import Header from './components/header'
 import Button from '@/components/button'
+import { Footer } from './components/footer'
+import { Search } from './components/search'
 
 export default function Products({ products }: any) {
   const listProducts = JSON.parse(products)
@@ -11,11 +13,9 @@ export default function Products({ products }: any) {
   return (
     <ProductsContainer>
       <Header />
+      <Search />
       <TableProduct products={listProducts} />
-      <ButtonsContainer>
-        <Button size={'md'} href={'/createproduct'} title="Nova entrada" />
-        <Button size={'md'} href={'/'} title="Nova cotação" />
-      </ButtonsContainer>
+      <Footer />
     </ProductsContainer>
   )
 }
