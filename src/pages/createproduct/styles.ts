@@ -1,3 +1,5 @@
+import background from '../../assets/background.jpg'
+
 import { styled } from '@/styles'
 
 export const FormContainer = styled('div', {
@@ -6,9 +8,11 @@ export const FormContainer = styled('div', {
   height: '100%',
   minHeight: '100vh',
   flexDirection: 'column',
-  background: '$gray700',
-  padding: '2.5rem',
   alignItems: 'center',
+  backgroundImage: `url("${background.src}")`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
 })
 
 export const Form = styled('form', {
@@ -16,8 +20,9 @@ export const Form = styled('form', {
   width: '100%',
   maxWidth: '400px',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: '2.5rem',
   alignItems: 'center',
+  padding: '2.5rem',
 
   label: {
     display: 'flex',
@@ -25,10 +30,11 @@ export const Form = styled('form', {
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '1rem',
+    fontSize: '1.5rem',
 
     span: {
       minWidth: '80px',
-      color: '#FFFFFF',
+      color: '$gray900',
     },
   },
 
@@ -48,6 +54,8 @@ export const Button = styled('button', {
   width: '100%',
   maxWidth: '300px',
   marginTop: '2rem',
+  background: '$baseButton',
+  boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
 
   '@bp1': {
     fontSize: '2rem',
@@ -62,15 +70,15 @@ export const Input = styled('input', {
   display: 'flex',
   flex: 1,
   alignItems: 'center',
-  background: '$gray700',
+  background: '$baseButton',
   border: 'solid 1px $gray500',
-  padding: '0.5rem 1rem',
+  padding: '0.8rem 1rem',
   borderRadius: '8px',
-  color: '$gray100',
-  fontSize: '1rem',
+  color: '$gray900',
+  fontSize: '1.5rem',
 
   '&::placeholder': {
-    fontSize: '0.7rem',
+    fontSize: '1rem',
   },
 
   '@bp4': {
@@ -83,11 +91,11 @@ export const Input = styled('input', {
 })
 
 export const Select = styled('select', {
-  background: '$gray700',
+  background: '$baseButton',
   border: 'solid 1px $gray500',
   padding: '0.5rem 1rem',
   borderRadius: '8px',
-  color: '$gray100',
+  color: '$gray900',
   cursor: 'pointer',
 
   option: {
@@ -96,9 +104,9 @@ export const Select = styled('select', {
 })
 
 export const Title = styled('h2', {
-  color: '$gray300',
+  color: '$gray900',
   marginTop: '2.5rem',
-  marginBottom: '5rem',
+  marginBottom: '3rem',
   fontSize: '2.5rem',
   display: 'flex',
   gap: '0.5rem',
@@ -118,6 +126,6 @@ export const Title = styled('h2', {
   },
 
   '@bp1': {
-    fontSize: '5rem',
+    fontSize: '3rem',
   },
 })

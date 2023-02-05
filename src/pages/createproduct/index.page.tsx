@@ -3,6 +3,7 @@ import { ArrowLeft } from 'phosphor-react'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
 import React, { FormEvent, useState } from 'react'
+import Header from './components/header'
 
 export default function FormNewProduct() {
   const [name, setName] = useState('')
@@ -36,6 +37,7 @@ export default function FormNewProduct() {
 
   return (
     <FormContainer>
+      <Header />
       <Title>
         <Link href={'/'}>
           <ArrowLeft size={32} />
