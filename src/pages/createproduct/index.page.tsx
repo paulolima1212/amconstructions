@@ -13,6 +13,7 @@ export default function FormNewProduct() {
 
   async function handleCreateNewProduct(e: FormEvent) {
     e.preventDefault()
+
     api
       .post(`/api/createProduct`, {
         name,
@@ -24,6 +25,7 @@ export default function FormNewProduct() {
       .then((response) => {
         return response.data
       })
+
     setName('')
     setFamily('')
     setMeasure('')
