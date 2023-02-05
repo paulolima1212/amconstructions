@@ -12,7 +12,7 @@ export const FooterContainer = styled('footer', {
   zIndex: 1,
   color: '$gray900',
   marginTop: '7rem',
-  background: 'rgba(217, 217, 217, 0.69)',
+  background: 'rgba(217, 217, 217, 0.85)',
 })
 
 export const ButtonsContainer = styled('div', {

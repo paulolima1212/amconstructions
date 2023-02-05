@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 export async function getProductsList() {
   const products = await prisma.$queryRaw`
     SELECT
+      p.id,
       p.name,
       p.measure,
       (

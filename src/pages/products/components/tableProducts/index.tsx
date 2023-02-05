@@ -1,7 +1,46 @@
 import dateFormatted, { moneyFormatter } from '@/utils/formatter'
 import { TableContainer } from './styles'
+import { useProductsContext } from '@/hooks/useProductsContext'
 
-export default function TableProduct({ products }: any) {
+interface ProductsProps {
+  id: string
+  family: string
+  measure: string
+  name: string
+  price: string
+  provider: string
+  ultPreco: string
+}
+
+export default function TableProduct({
+  products,
+}: {
+  products: ProductsProps[]
+}) {
+  const { filter, filterValue } = useProductsContext()
+  let newListProduct = products
+
+  switch (filter) {
+    case 'description':
+      newListProduct = products.filter((product) =>
+        product.name?.toLowerCase().startsWith(filterValue.toLowerCase()),
+      )
+      break
+    case 'family':
+      newListProduct = products.filter((product) =>
+        product.family?.toLowerCase().startsWith(filterValue.toLowerCase()),
+      )
+      break
+    case 'provider':
+      newListProduct = products.filter((product) =>
+        product.provider?.toLowerCase().startsWith(filterValue.toLowerCase()),
+      )
+      break
+
+    default:
+      break
+  }
+
   return (
     <TableContainer>
       <table>
@@ -16,7 +55,7 @@ export default function TableProduct({ products }: any) {
           </tr>
         </thead>
         <tbody>
-          {products.map((product: any) => {
+          {newListProduct.map((product: any) => {
             return (
               <tr key={product.id}>
                 <td width={'15%'}>{product.family}</td>
