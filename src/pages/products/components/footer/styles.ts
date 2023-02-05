@@ -11,8 +11,8 @@ export const FooterContainer = styled('footer', {
   left: 0,
   zIndex: 1,
   color: '$gray900',
-  marginTop: '7rem',
   background: 'rgba(217, 217, 217, 0.85)',
+  marginTop: 'auto',
 })
 
 export const ButtonsContainer = styled('div', {
@@ -23,5 +23,4 @@ export const ButtonsContainer = styled('div', {
   color: '$gray900',
   justifyContent: 'space-around',
   gap: '2rem',
-  marginBottom: '2rem',
 })
