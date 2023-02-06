@@ -1,6 +1,5 @@
 import { Products } from '@/@types/products'
 import { ListProductsContainer } from './styles'
-import { useProductsContext } from '@/hooks/useProductsContext'
 
 interface ListProductsFoundProps {
   products: Products[]
