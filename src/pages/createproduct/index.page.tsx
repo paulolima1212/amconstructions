@@ -4,6 +4,9 @@ import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
 import React, { FormEvent, useState } from 'react'
 import Header from './components/header'
+import { getProductsByName } from '@/services/getProductsByName.service'
+import { ListProductsFound } from './components/listproduct'
+import { Products } from '@/@types/products'
 
 export default function FormNewProduct() {
   const [name, setName] = useState('')
@@ -11,6 +14,7 @@ export default function FormNewProduct() {
   const [price, setPrice] = useState('')
   const [measure, setMeasure] = useState('')
   const [family, setFamily] = useState('')
+  const [productList, setProductList] = useState<Products[]>([])
 
   async function handleCreateNewProduct(e: FormEvent) {
     e.preventDefault()
@@ -35,6 +39,22 @@ export default function FormNewProduct() {
     setProvider('')
   }
 
+  async function handleGetListProduct(name: string) {
+    const data = await getProductsByName(name)
+
+    setProductList(data)
+  }
+
+  function handleProduct(value: string) {
+    setName(value)
+
+    if (value !== '') {
+      handleGetListProduct(value)
+    } else {
+      setProductList([])
+    }
+  }
+
   return (
     <FormContainer>
       <Header />
@@ -46,56 +66,69 @@ export default function FormNewProduct() {
       </Title>
       <Form onSubmit={handleCreateNewProduct}>
         <label htmlFor="product">
-          <span>Produto</span>
-          <Input
-            type="text"
-            placeholder="Digite o nome do produto"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
+          <div>
+            <span>Produto</span>
+            <Input
+              type="text"
+              placeholder="Digite o nome do produto"
+              onChange={(e) => handleProduct(e.target.value)}
+              value={name}
+            />
+          </div>
+          {productList.length > 0 && (
+            <ListProductsFound products={productList} />
+          )}
         </label>
         <label htmlFor="price">
-          <span>Preço</span>
-          <Input
-            type="number"
-            placeholder="Digite o preço do produto"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-            min={0.01}
-            step={0.01}
-          />
+          <div>
+            <span>Preço</span>
+            <Input
+              type="number"
+              placeholder="Digite o preço do produto"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
+              min={0.01}
+              step={0.01}
+            />
+          </div>
         </label>
         <label htmlFor="provider">
-          <span>Fornecedor</span>
-          <Input
-            type="text"
-            placeholder="Digite o nome do fornecedor"
-            onChange={(e) => setProvider(e.target.value)}
-            value={provider}
-          />
+          <div>
+            <span>Fornecedor</span>
+            <Input
+              type="text"
+              placeholder="Digite o nome do fornecedor"
+              onChange={(e) => setProvider(e.target.value)}
+              value={provider}
+            />
+          </div>
         </label>
         <label htmlFor="family">
-          <span>Categoria</span>
-          <Input
-            type="text"
-            placeholder="Digite o nome da categoria"
-            onChange={(e) => setFamily(e.target.value)}
-            value={family}
-          />
+          <div>
+            <span>Categoria</span>
+            <Input
+              type="text"
+              placeholder="Digite o nome da categoria"
+              onChange={(e) => setFamily(e.target.value)}
+              value={family}
+            />
+          </div>
         </label>
         <label>
-          <span>Un.</span>
-          <Select
-            aria-label="measure-unit"
-            onChange={(e) => setMeasure(e.target.value)}
-            value={measure}
-          >
-            <option value="SELECT"> </option>
-            <option value="UN">UN</option>
-            <option value="KG">KG</option>
-            <option value="M2">M²</option>
-            <option value="M">M</option>
-          </Select>
+          <div>
+            <span>Un.</span>
+            <Select
+              aria-label="measure-unit"
+              onChange={(e) => setMeasure(e.target.value)}
+              value={measure}
+            >
+              <option value="SELECT"> </option>
+              <option value="UN">UN</option>
+              <option value="KG">KG</option>
+              <option value="M2">M²</option>
+              <option value="M">M</option>
+            </Select>
+          </div>
         </label>
         <Button type="submit">Cadastrar</Button>
       </Form>

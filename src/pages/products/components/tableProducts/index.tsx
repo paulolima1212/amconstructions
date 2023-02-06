@@ -55,13 +55,13 @@ export default function TableProduct({
           </tr>
         </thead>
         <tbody>
-          {newListProduct.map((product: any) => {
+          {newListProduct.map((product: ProductsProps) => {
             return (
               <tr key={product.id}>
                 <td width={'15%'}>{product.family}</td>
                 <td>{product.name}</td>
                 <td>{product.provider}</td>
-                <td>{moneyFormatter.format(product.price)}</td>
+                <td>{moneyFormatter.format(Number(product.price))}</td>
                 <td>{product.measure}</td>
                 <td width={'30%'}>
                   {dateFormatted(new Date(product.ultPreco))}

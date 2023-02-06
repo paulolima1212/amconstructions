@@ -26,11 +26,35 @@ export const Form = styled('form', {
 
   label: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '1rem',
     fontSize: '1.5rem',
+
+    div: {
+      position: 'relative',
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+
+      ul: {
+        position: 'absolute',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        background: '$gray100',
+        listStyle: 'none',
+        borderRadius: '8px',
+        gap: '1.2rem',
+        padding: '2.5rem 1.5rem',
+        zIndex: 10,
+        fontSize: '1.8rem',
+      },
+    },
 
     span: {
       minWidth: '80px',
