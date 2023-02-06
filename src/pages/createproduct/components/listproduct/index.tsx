@@ -1,13 +1,25 @@
 import { Products } from '@/@types/products'
 import { ListProductsContainer } from './styles'
+import { useProductsContext } from '@/hooks/useProductsContext'
 
-export function ListProductsFound({ products }: { products: Products[] }) {
-  console.log(products)
+interface ListProductsFoundProps {
+  products: Products[]
+  setProductId: (id: string) => void
+}
+
+export function ListProductsFound({
+  products,
+  setProductId,
+}: ListProductsFoundProps) {
   return (
     <ListProductsContainer>
       <ul>
         {products.map((product) => {
-          return <li>{product.name}</li>
+          return (
+            <li key={product.id} onClick={() => setProductId(product.id)}>
+              {product.name}
+            </li>
+          )
         })}
       </ul>
     </ListProductsContainer>

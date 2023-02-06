@@ -23,7 +23,12 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
 
   return (
     <ProductsContext.Provider
-      value={{ filter, filterValue, handleSetFilter, handleSetFilterValue }}
+      value={{
+        filter,
+        filterValue,
+        handleSetFilter,
+        handleSetFilterValue,
+      }}
     >
       {children}
     </ProductsContext.Provider>

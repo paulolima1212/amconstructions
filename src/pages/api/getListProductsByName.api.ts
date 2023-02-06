@@ -13,6 +13,13 @@ export default async function handle(
         contains: String(name).toLowerCase(),
       },
     },
+    include: {
+      Family: {
+        select: {
+          name: true,
+        },
+      },
+    },
   })
 
   return res.json(product)

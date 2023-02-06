@@ -6,4 +6,7 @@ export type Products = {
   name: string
   price: string
   provider: string
+  Family: {
+    name: string
+  }
 }

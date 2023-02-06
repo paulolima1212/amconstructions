@@ -2,19 +2,20 @@ import { api } from '@/lib/axios.config'
 import { ArrowLeft } from 'phosphor-react'
 import { Button, Form, FormContainer, Input, Select, Title } from './styles'
 import Link from 'next/link'
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import Header from './components/header'
 import { getProductsByName } from '@/services/getProductsByName.service'
 import { ListProductsFound } from './components/listproduct'
 import { Products } from '@/@types/products'
 
 export default function FormNewProduct() {
-  const [name, setName] = useState('')
-  const [provider, setProvider] = useState('')
-  const [price, setPrice] = useState('')
-  const [measure, setMeasure] = useState('')
-  const [family, setFamily] = useState('')
+  const [name, setName] = useState<string | undefined>('')
+  const [provider, setProvider] = useState<string | undefined>('')
+  const [price, setPrice] = useState<string | undefined>('')
+  const [measure, setMeasure] = useState<string | undefined>('')
+  const [family, setFamily] = useState<string | undefined>('')
   const [productList, setProductList] = useState<Products[]>([])
+  const [productSelected, setProductSelected] = useState<Products>()
 
   async function handleCreateNewProduct(e: FormEvent) {
     e.preventDefault()
@@ -55,6 +56,18 @@ export default function FormNewProduct() {
     }
   }
 
+  function handleSetProductSelected(id: string) {
+    console.log(id)
+    setProductSelected(productList.find((product) => product.id === id))
+    console.log(productSelected)
+    setProductList([])
+    setName(productSelected?.name)
+    setMeasure(productSelected?.measure)
+    setPrice(productSelected?.price)
+    setProvider(productSelected?.provider)
+    setFamily(productSelected?.Family?.name)
+  }
+
   return (
     <FormContainer>
       <Header />
@@ -76,7 +89,10 @@ export default function FormNewProduct() {
             />
           </div>
           {productList.length > 0 && (
-            <ListProductsFound products={productList} />
+            <ListProductsFound
+              setProductId={handleSetProductSelected}
+              products={productList}
+            />
           )}
         </label>
         <label htmlFor="price">
