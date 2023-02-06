@@ -20,7 +20,7 @@ model Product {
   provider   String
   measure    Measure
   created_at DateTime @default(now())
-  Family     Family?  @relation(fields: [family_id], references: [id])
+  Family     Family?  @relation(fields: [family_id], references: [id], onDelete: Cascade)
   family_id  String?
   Price      Price[]
 
@@ -32,7 +32,7 @@ model Product {
 model Price {
   id         String   @id @default(uuid())
   price      Decimal
-  product    Product  @relation(fields: [product_id], references: [id])
+  product    Product  @relation(fields: [product_id], references: [id], onDelete: Cascade)
   measure    Measure
   provider   String
   created_at DateTime @default(now())

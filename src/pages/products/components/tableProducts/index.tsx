@@ -1,6 +1,9 @@
 import dateFormatted, { moneyFormatter } from '@/utils/formatter'
 import { TableContainer } from './styles'
 import { useProductsContext } from '@/hooks/useProductsContext'
+import { TrashSimple } from 'phosphor-react'
+import { deleteProductById } from '@/services/deleteProductById.service'
+import { useRouter } from 'next/router'
 
 interface ProductsProps {
   id: string
@@ -17,6 +20,7 @@ export default function TableProduct({
 }: {
   products: ProductsProps[]
 }) {
+  const navigate = useRouter()
   const { filter, filterValue } = useProductsContext()
   let newListProduct = products
 
@@ -41,6 +45,11 @@ export default function TableProduct({
       break
   }
 
+  function handleDeleteProductById(id: string) {
+    deleteProductById(id)
+    navigate.reload()
+  }
+
   return (
     <TableContainer>
       <table>
@@ -52,6 +61,7 @@ export default function TableProduct({
             <th>Preço</th>
             <th>Un.</th>
             <th>Ult Preço</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -65,6 +75,12 @@ export default function TableProduct({
                 <td>{product.measure}</td>
                 <td width={'30%'}>
                   {dateFormatted(new Date(product.ultPreco))}
+                </td>
+                <td>
+                  <TrashSimple
+                    size={20}
+                    onClick={() => handleDeleteProductById(product.id)}
+                  />
                 </td>
               </tr>
             )

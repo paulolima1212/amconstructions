@@ -7,7 +7,6 @@ import Header from './components/header'
 import { getProductsByName } from '@/services/getProductsByName.service'
 import { ListProductsFound } from './components/listproduct'
 import { Products } from '@/@types/products'
-import { produce } from 'immer'
 
 export default function FormNewProduct() {
   const [name, setName] = useState<string | undefined>('')
