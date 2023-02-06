@@ -147,6 +147,7 @@ export default function FormNewProduct() {
               <option value="UN">UN</option>
               <option value="KG">KG</option>
               <option value="M2">M²</option>
+              <option value="M3">M³</option>
               <option value="M">M</option>
             </Select>
           </div>
