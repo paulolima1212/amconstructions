@@ -7,6 +7,7 @@ import Header from './components/header'
 import { getProductsByName } from '@/services/getProductsByName.service'
 import { ListProductsFound } from './components/listproduct'
 import { Products } from '@/@types/products'
+import { produce } from 'immer'
 
 export default function FormNewProduct() {
   const [name, setName] = useState<string | undefined>('')
@@ -15,7 +16,6 @@ export default function FormNewProduct() {
   const [measure, setMeasure] = useState<string | undefined>('')
   const [family, setFamily] = useState<string | undefined>('')
   const [productList, setProductList] = useState<Products[]>([])
-  const [productSelected, setProductSelected] = useState<Products>()
 
   async function handleCreateNewProduct(e: FormEvent) {
     e.preventDefault()
@@ -57,16 +57,22 @@ export default function FormNewProduct() {
   }
 
   function handleSetProductSelected(id: string) {
-    console.log(id)
-    setProductSelected(productList.find((product) => product.id === id))
-    console.log(productSelected)
+    const newProduct = productList.find((product) => product.id === id)
     setProductList([])
-    setName(productSelected?.name)
-    setMeasure(productSelected?.measure)
-    setPrice(productSelected?.price)
-    setProvider(productSelected?.provider)
-    setFamily(productSelected?.Family?.name)
+    setName(newProduct?.name)
+    setMeasure(newProduct?.measure)
+    setPrice(newProduct?.price)
+    setProvider(newProduct?.provider)
+    setFamily(newProduct?.Family?.name)
   }
+
+  useEffect(() => {
+    setFamily('')
+    setMeasure('')
+    setPrice('')
+    setPrice('')
+    setProvider('')
+  }, [name])
 
   return (
     <FormContainer>
