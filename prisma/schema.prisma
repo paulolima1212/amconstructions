@@ -17,6 +17,8 @@ model Product {
   id         String   @id @default(uuid())
   name       String   @unique
   price      Decimal
+  iva        Decimal
+  sale_price Decimal
   provider   String
   measure    Measure
   created_at DateTime @default(now())
@@ -32,6 +34,8 @@ model Product {
 model Price {
   id         String   @id @default(uuid())
   price      Decimal
+  iva        Decimal
+  sale_price Decimal
   product    Product  @relation(fields: [product_id], references: [id], onDelete: Cascade)
   measure    Measure
   provider   String
@@ -77,6 +81,8 @@ model Provider {
 enum Measure {
   KG
   M2
+  M3
   M
   UN
+  KT
 }

@@ -7,13 +7,13 @@ export async function getProductsList() {
       p.name,
       p.measure,
       (
-      SELECT 
+      SELECT
         f.name
       FROM
-        families f 
-      WHERE 
+        families f
+      WHERE
         f.id = p.family_id 
-      ) as family,
+          ) AS family,
       (
       SELECT
         price.price
@@ -24,8 +24,32 @@ export async function getProductsList() {
       ORDER BY
         price.created_at DESC
       LIMIT
-        1
-      ) as price,
+            1
+          ) AS price,
+          (
+      SELECT
+        price.iva
+      FROM
+        price
+      WHERE
+        price.product_id = p.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+            1
+          ) AS IVA,
+          (
+      SELECT
+        price.sale_price 
+      FROM
+        price
+      WHERE
+        price.product_id = p.id
+      ORDER BY
+        price.created_at DESC
+      LIMIT
+            1
+          ) AS sale_price,
       (
       SELECT
         price.provider
@@ -36,8 +60,8 @@ export async function getProductsList() {
       ORDER BY
         price.created_at DESC
       LIMIT
-        1
-      ) as provider,
+            1
+          ) AS provider,
       (
       SELECT
         price.created_at
@@ -48,8 +72,8 @@ export async function getProductsList() {
       ORDER BY
         price.created_at DESC
       LIMIT
-        1
-      ) as ultPreco
+            1
+          ) AS ultPreco
     FROM
       products p
   `

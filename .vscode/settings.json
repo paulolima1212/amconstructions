@@ -18,7 +18,8 @@
     "preço",
     "preços",
     "produto",
-    "Testes"
+    "Testes",
+    "Venda"
   ],
   "files.exclude": {
     "**/.git": true,

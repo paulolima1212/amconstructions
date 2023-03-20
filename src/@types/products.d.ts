@@ -6,6 +6,8 @@ export type Products = {
   name: string
   price: string
   provider: string
+  iva: string
+  sale_price: string
   Family: {
     name: string
   }

@@ -1,7 +1,7 @@
 import dateFormatted, { moneyFormatter } from '@/utils/formatter'
 import { TableContainer } from './styles'
 import { useProductsContext } from '@/hooks/useProductsContext'
-import { TrashSimple } from 'phosphor-react'
+import { PlusCircle, TrashSimple } from 'phosphor-react'
 import { deleteProductById } from '@/services/deleteProductById.service'
 import { useRouter } from 'next/router'
 
@@ -13,6 +13,8 @@ interface ProductsProps {
   price: string
   provider: string
   ultPreco: string
+  IVA: string
+  sale_price: string
 }
 
 export default function TableProduct({
@@ -20,6 +22,7 @@ export default function TableProduct({
 }: {
   products: ProductsProps[]
 }) {
+  const router = useRouter()
   const navigate = useRouter()
   const { filter, filterValue } = useProductsContext()
   let newListProduct = products
@@ -59,6 +62,8 @@ export default function TableProduct({
             <th>Descrição</th>
             <th>Fornecedor</th>
             <th>Preço</th>
+            <th>IVA</th>
+            <th>Preço Venda</th>
             <th>Un.</th>
             <th>Ult Preço</th>
             <th>Ações</th>
@@ -68,15 +73,25 @@ export default function TableProduct({
           {newListProduct.map((product: ProductsProps) => {
             return (
               <tr key={product.id}>
-                <td width={'15%'}>{product.family}</td>
-                <td>{product.name}</td>
-                <td>{product.provider}</td>
+                <td>{product.family}</td>
+                <td style={{ textAlign: 'left', minWidth: '15rem' }}>
+                  {product.name}
+                </td>
+                <td style={{ textAlign: 'left' }}>{product.provider}</td>
                 <td>{moneyFormatter.format(Number(product.price))}</td>
+                <td>{product.IVA}%</td>
+                <td>{moneyFormatter.format(Number(product.sale_price))}</td>
                 <td>{product.measure}</td>
-                <td width={'30%'}>
+                <td style={{ minWidth: '15rem' }}>
                   {dateFormatted(new Date(product.ultPreco))}
                 </td>
-                <td>
+                <td className="actions">
+                  <PlusCircle
+                    size={20}
+                    onClick={() =>
+                      router.push(`/createproduct?id=${product.id}`)
+                    }
+                  />
                   <TrashSimple
                     size={20}
                     onClick={() => handleDeleteProductById(product.id)}

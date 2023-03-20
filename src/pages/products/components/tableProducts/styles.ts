@@ -7,8 +7,20 @@ export const TableContainer = styled('div', {
   color: '$gray900',
   width: '100%',
   padding: '1rem 2rem',
+  overflow: 'scroll',
+
+  '.actions': {
+    display: 'flex',
+    gap: '1rem',
+    textAlign: 'center',
+
+    svg: {
+      alignSelf: 'center',
+    },
+  },
 
   table: {
+    width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: '0 0.5rem',
     marginTop: '1.5rem',
