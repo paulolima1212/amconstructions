@@ -60,14 +60,16 @@ export default function FormNewProduct({ product }: { product: Products }) {
       .post(`/api/createProduct`, {
         name: activeProduct.productName,
         provider: activeProduct.productProvider,
-        price: activeProduct.productPrice,
+        price: Number(activeProduct.productPrice),
         measure: activeProduct.productMeasure,
         family: activeProduct.productFamily,
-        sale_price: (
-          (Number(activeProduct.productIVA) / 100 + 1) *
-          Number(activeProduct.productPrice)
-        ).toFixed(2),
-        iva: activeProduct.productIVA,
+        sale_price: Number(
+          (
+            (Number(activeProduct.productIVA) / 100 + 1) *
+            Number(activeProduct.productPrice)
+          ).toFixed(2),
+        ),
+        iva: Number(activeProduct.productIVA),
       })
       .then((response) => {
         return response.data
