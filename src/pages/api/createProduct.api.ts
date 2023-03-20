@@ -38,8 +38,8 @@ export default async function handler(
       price: Number(price),
       provider: String(provider),
       measure,
-      sale_price,
-      iva,
+      sale_price: Number(sale_price),
+      iva: Number(iva),
       Family: {
         connectOrCreate: {
           where: {
@@ -59,8 +59,8 @@ export default async function handler(
       product_id: product.id,
       provider: String(provider),
       measure,
-      sale_price,
-      iva,
+      sale_price: Number(sale_price),
+      iva: Number(iva),
     },
   })
 
