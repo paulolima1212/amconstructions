@@ -6,7 +6,7 @@
     "@next/next/no-page-custom-font": "off",
     "no-unused-vars": [
       "error",
-      { "vars": "none", "args": "after-used", "ignoreRestSiblings": false }
+      { "vars": "local", "args": "none", "ignoreRestSiblings": true }
     ]
   }
 }

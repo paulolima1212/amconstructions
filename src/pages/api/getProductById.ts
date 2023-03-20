@@ -1,5 +1,4 @@
 import { prisma } from '@/lib/prisma'
-import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handleGetProductById(id: string) {
   const product = await prisma.product.findUnique({
